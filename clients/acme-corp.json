@@ -1,0 +1,119 @@
+{
+  "client_id": "acme-corp",
+  "name": "Acme Corp",
+  "contact_email": "security@acme.com",
+  "targets": [
+    { "host": "acme.com", "status": "up" },
+    { "host": "www.acme.com", "status": "up" },
+    { "host": "api.acme.com", "status": "up" },
+    { "host": "legacy.acme.com", "status": "down" }
+  ],
+  "findings": [
+    {
+      "fingerprint": "sha256:c1critical",
+      "severity": "critical",
+      "title": "Exposed database port",
+      "description": "PostgreSQL port 5432 is open to the internet without firewall protection.",
+      "source": "port_scan",
+      "timestamp": "2026-04-22T08:00:00Z"
+    },
+    {
+      "fingerprint": "sha256:h1high",
+      "severity": "high",
+      "title": "Outdated OpenSSL version",
+      "description": "OpenSSL 1.0.2k is installed, containing known vulnerabilities (CVE-2024-12797).",
+      "source": "version_scan",
+      "timestamp": "2026-04-22T08:05:00Z"
+    },
+    {
+      "fingerprint": "sha256:m1med",
+      "severity": "medium",
+      "title": "Missing CSP header",
+      "description": "Content-Security-Policy header is not set on acme.com.",
+      "source": "header_scan",
+      "timestamp": "2026-04-21T10:00:00Z"
+    }
+  ],
+  "open_ports": [
+    { "port": 443, "service": "https", "state": "open", "version": "nginx 1.24" },
+    { "port": 80,  "service": "http",  "state": "open" },
+    { "port": 22,  "service": "ssh",   "state": "open", "version": "OpenSSH 8.9" },
+    { "port": 5432,"service": "postgresql", "state": "open", "version": "PostgreSQL 14" },
+    { "port": 6379,"service": "redis", "state": "open" }
+  ],
+  "ssl_certs": [
+    {
+      "host": "acme.com",
+      "fingerprint": "sha256:acme123",
+      "issuer": "DigiCert",
+      "serial": "01:AB:CD",
+      "expires": "2026-05-10",
+      "subject": "CN=acme.com"
+    },
+    {
+      "host": "www.acme.com",
+      "fingerprint": "sha256:wwwacme456",
+      "issuer": "DigiCert",
+      "serial": "02:EF:GH",
+      "expires": "2026-06-20",
+      "subject": "CN=www.acme.com"
+    }
+  ],
+  "alerts": [
+    {
+      "severity": "critical",
+      "title": "Database port exposed to internet",
+      "source": "port_scan",
+      "timestamp": "2026-04-22T08:00:00Z"
+    },
+    {
+      "severity": "high",
+      "title": "OpenSSH vulnerable to CVE-2024-12797",
+      "source": "version_scan",
+      "timestamp": "2026-04-22T08:05:00Z"
+    },
+    {
+      "severity": "high",
+      "title": "Redis port open without authentication",
+      "source": "port_scan",
+      "timestamp": "2026-04-21T14:00:00Z"
+    },
+    {
+      "severity": "medium",
+      "title": "SSL certificate expiring in 17 days",
+      "source": "ssl_monitor",
+      "timestamp": "2026-04-20T00:00:00Z"
+    },
+    {
+      "severity": "info",
+      "title": "New open port discovered: 5432",
+      "source": "port_scan",
+      "timestamp": "2026-04-19T08:30:00Z"
+    }
+  ],
+  "reports": [
+    {
+      "name": "Acme Corp — Full Security Scan 2026-04-22",
+      "type": "pdf",
+      "url": "/reports/acme-corp-20260422.pdf",
+      "date": "2026-04-22"
+    },
+    {
+      "name": "Acme Corp — SSL Audit",
+      "type": "html",
+      "url": "/reports/acme-corp-ssl-20260422.html",
+      "date": "2026-04-22"
+    }
+  ],
+  "risk_score": 72,
+  "risk_grade": "high",
+  "risk_breakdown": {
+    "findings": { "critical": 1, "high": 1, "medium": 1, "score_contribution": 75 },
+    "open_ports": { "count": 5, "score_contribution": 10 },
+    "ssl_issues": { "count": 1, "score_contribution": 10 },
+    "recent_alerts": { "count": 5, "score_contribution": 15 }
+  },
+  "last_scan_date": "2026-04-22",
+  "last_activity": "2026-04-22T08:05:00Z",
+  "created_at": "2026-01-10T08:00:00Z"
+}
