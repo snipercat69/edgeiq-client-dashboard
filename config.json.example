@@ -1,0 +1,20 @@
+{
+  "app_name": "EdgeIQ Client Portal",
+  "version": "1.0.0",
+  "port": 8080,
+  "auth_token": "",
+  "data_dir": ".",
+  "tier": "free",
+  "features": {
+    "max_clients": 1,
+    "max_targets": 3,
+    "risk_scoring": "basic",
+    "pdf_reports": false,
+    "email_digest": false,
+    "slack_integration": false,
+    "telegram_integration": false
+  },
+  "ssl_warning_days": 30,
+  "ssl_critical_days": 7,
+  "alert_retention_days": 90
+}
